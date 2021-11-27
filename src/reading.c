@@ -4,9 +4,9 @@
 #include <string.h>
 #include <assert.h>
 #include <errno.h>
-#include <htslib/hts.h>
-#include <htslib/vcf.h>
-#include <htslib/synced_bcf_reader.h>
+//#include <htslib/hts.h>
+//#include <htslib/vcf.h>
+//#include <htslib/synced_bcf_reader.h>
 
 
 int reading(st, format, res) 
