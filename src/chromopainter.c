@@ -6,9 +6,9 @@
 #include <string.h>
 #include <assert.h>
 #include <errno.h>
-//#include <htslib/hts.h>
-//#include <htslib/vcf.h>
-//#include <htslib/synced_bcf_reader.h>
+#include <../include/hts.h>
+#include <../include/vcf.h>
+#include <../include/synced_bcf_reader.h>
 
 #include "zlib.h"
 
