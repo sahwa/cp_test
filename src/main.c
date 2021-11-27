@@ -15,7 +15,7 @@ int main(int argc, char * argv[]) {
   double bpval;
   double totaldonorprobs;
   int log_lik_check;
-  int ndonors = 0; 
+  int ndonors = 0;
 
   int ndonorpops, nrecpops;
   int nind, nsites, cond_nhaps, cond_nind, num_rec_drift;
@@ -30,7 +30,7 @@ int main(int argc, char * argv[]) {
   char donorname[2047];
   char indname[2047];
   FILE * fd, * fd2, * fd3, * fd4, * fout, * fout2, * fout3, * fout4, * fout5, * fout6, * fout7, * fout8;
-	gzFile fout9;
+  gzFile fout9;
   char * filename = malloc(1000 * sizeof(char));
   char * filenameGEN = malloc(1000 * sizeof(char));
   char * filenameDONORLIST = malloc(1000 * sizeof(char));
@@ -117,7 +117,7 @@ int main(int argc, char * argv[]) {
     if (strcmp(argv[i], "-iM") == 0)
       mutationALL_em_find = 1;
     //       if (strcmp(argv[i],"-c")==0)
-    //	 condition_recipient_inds_find=1;
+    //   condition_recipient_inds_find=1;
     if (strcmp(argv[i], "-a") == 0)
       all_versus_all_ind = 1;
     if (strcmp(argv[i], "-j") == 0)
@@ -173,8 +173,8 @@ int main(int argc, char * argv[]) {
   if ((mutation_rate_ind == 1) && (mutationALL_em_find == 1)) {
     printf("You have specified to estimate a global mutation (emission) rate; will ignore population-specific mutation (emission) rates in %s. If you wish to use donor-specific mutation rates, use the '-im' switch.\n", filenameDONORLIST);
   }
-  
-	for (i = 1; i < argc; i++) {
+
+  for (i = 1; i < argc; i++) {
     if (strcmp(argv[i], "-g") == 0) {
       if (argv[(i + 1)][0] == '-') {
         printf("Something wrong with input command line (missing arguments?). Exiting....\n");
@@ -382,7 +382,6 @@ int main(int argc, char * argv[]) {
     exit(1);
   }
 
-
   if (fgets(line, 2047, fd) == NULL) {
     printf("Error!\n");
   }
@@ -402,10 +401,10 @@ int main(int argc, char * argv[]) {
       fgets(line,2047,fd);
       nind_tot=0;
       while(!feof(fd))
-	{
-	  if (fgets(bigline,2047,fd)!=NULL)
-	    nind_tot=nind_tot+1;
-	}
+  {
+    if (fgets(bigline,2047,fd)!=NULL)
+      nind_tot=nind_tot+1;
+  }
       fclose(fd);
       printf("%d\n",nind_tot);
       nind_tot=nind_tot/(2-haploid_ind);
@@ -458,11 +457,11 @@ int main(int argc, char * argv[]) {
     }
     nind = nind_tot;
     for (i = 0; i < nind_tot; i++) {
-      
+
       if (fgets(line, 2047, fd4) == NULL) {
         printf("Error!\n");
       }
-      
+
       step = line;
       reading( & step, "%s", waste);
       strcpy(ind_label_vec[i], waste);
@@ -647,11 +646,11 @@ int main(int argc, char * argv[]) {
     for (i = 0; i < nind_tot; i++) {
       for (j = 0; j < (2 - haploid_ind); j++)
         pop_vec_tot[(2 - haploid_ind) * i + j] = -9;
-      
+
       if (fgets(line, 2047, fd4) == NULL) {
         printf("Error!\n");
       }
-      
+
       step = line;
       reading( & step, "%s", waste);
       reading( & step, "%s", waste);
@@ -887,19 +886,19 @@ int main(int argc, char * argv[]) {
       printf("error opening recom map input file: %s\n", filename);
       exit(1);
     }
-    
+
     if (fgets(line, 2047, fd2) == NULL) { // header
       printf("Error!\n");
     }
-    
+
     for (j = 0; j < (Data -> nsnps - 1); j++) {
-      
-    if (fgets(line, 2047, fd2) == NULL) { // header
+
+      if (fgets(line, 2047, fd2) == NULL) { // header
         printf("Error!\n");
       }
 
       step = line;
-      
+
       reading( & step, "%lf", & bpval); // basepair position
       if (bpval != Data -> positions[j]) {
         printf("basepair positions do not match between %s and %s at basepair %d. Exiting....\n", filename, filenameGEN, j + 1);
@@ -916,11 +915,11 @@ int main(int argc, char * argv[]) {
         //exit(1);
       }
     }
-    
+
     if (fgets(line, 2047, fd2) == NULL) { // header
       printf("Error!\n");
     }
-    
+
     step = line;
     reading( & step, "%lf", & bpval); // basepair position
     if (bpval != Data -> positions[(Data -> nsnps - 1)]) {

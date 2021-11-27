@@ -1,7 +1,7 @@
 CC=gcc
 
 IDIR=include
-CFLAGS=-I$(IDIR) -lm -lz -O3 -march=native -lpthread -llzma -lbz2
+CFLAGS=-I$(IDIR) -lm -lz -O3 -march=native -lpthread -llzma -lbz2 -lhts
 
 _DEPS = data_t.h destroy.h loglik.h reading.h sampler.h usage.h 
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))

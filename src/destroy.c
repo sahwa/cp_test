@@ -3,18 +3,18 @@
 #include "data_t.h"
 
 void DestroyData(struct data_t * dat, int ploidy) {
-  
-	int n_args = 8;
 
-	for (int i = 0; i < dat -> ndonorhaps; i++) {
+  int n_args = 8;
+
+  for (int i = 0; i < dat -> ndonorhaps; i++) {
     free(dat -> cond_chromosomes[i]);
-	}
-  
-	for (int i = 0; i < ploidy; i++) {
+  }
+
+  for (int i = 0; i < ploidy; i++) {
     free(dat -> ind_chromosomes[i]);
-	}
-  
-	free(dat -> cond_chromosomes);
+  }
+
+  free(dat -> cond_chromosomes);
   free(dat -> ind_chromosomes);
   free(dat -> positions);
   free(dat -> lambda);
@@ -26,11 +26,11 @@ void DestroyData(struct data_t * dat, int ploidy) {
   free(dat -> copy_prob_new);
   free(dat -> copy_prob_newSTART);
   free(dat -> MutProb_vec_new);
-  
-	for (int i = 0; i < n_args; i++) {
+
+  for (int i = 0; i < n_args; i++) {
     free(dat -> back_prob[i]);
-	}
-  
-	free(dat -> back_prob);
+  }
+
+  free(dat -> back_prob);
   free(dat -> ndonorhaps_vec);
 }

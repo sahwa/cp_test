@@ -78,10 +78,10 @@ double ** sampler(int * newh, int ** existing_h, int * p_Nloci, int * p_Nhaps, i
   if (unlinked_ind == 1 || lambda[0] < 0) TransProb[0] = 1.0;
   /*
   if (TransProb[0]<rounding_val)
-	{
-	  printf("Transition prob is too low; will likely cause rounding errors. Exiting...\n");
-	  exit(1);
-	}
+  {
+    printf("Transition prob is too low; will likely cause rounding errors. Exiting...\n");
+    exit(1);
+  }
   */
 
   for (locus = 1; locus < * p_Nloci - 1; locus++) {
@@ -90,10 +90,10 @@ double ** sampler(int * newh, int ** existing_h, int * p_Nloci, int * p_Nhaps, i
     if (unlinked_ind == 1 || lambda[locus] < 0) TransProb[locus] = 1.0;
     /*
       if (TransProb[locus]<rounding_val)
-	{
-	  printf("Transition prob is too low; will likely cause rounding errors. Exiting...\n");
-	  exit(1);
-	}
+  {
+    printf("Transition prob is too low; will likely cause rounding errors. Exiting...\n");
+    exit(1);
+  }
       */
   }
   /* FORWARDS ALGORITHM: (Rabiner 1989, p.262) */
@@ -106,10 +106,10 @@ double ** sampler(int * newh, int ** existing_h, int * p_Nloci, int * p_Nhaps, i
     //if (existing_h[i][0]==9) ObsStateProb = small_missing_val;
     /*
       if (ObsStateProb<rounding_val)
-	{
-	  printf("Mutation (emission) rate is too low; will likely cause rounding errors. Exiting...\n");
-	  exit(1);
-	}
+  {
+    printf("Mutation (emission) rate is too low; will likely cause rounding errors. Exiting...\n");
+    exit(1);
+  }
       */
 
     Alphamat[i][0] = log(copy_probSTART[i] * ObsStateProb);
@@ -218,12 +218,12 @@ double ** sampler(int * newh, int ** existing_h, int * p_Nloci, int * p_Nhaps, i
         if (newh[(locus + 1)] != 9) ObsStateProbPREV = (1 - MutProb_vec[i]) * (newh[(locus + 1)] == existing_h[i][(locus + 1)]) + MutProb_vec[i] * (newh[(locus + 1)] != existing_h[i][(locus + 1)]);
         if (newh[(locus + 1)] == 9) ObsStateProbPREV = 1.0;
         /*
-	      if ((ObsStateProb<rounding_val) || (ObsStateProbPREV<rounding_val))
-		{
-		  printf("Mutation (emission) rate is too low; will likely cause rounding errors. Exiting...\n");
-		  exit(1);
-		}
-	      */
+        if ((ObsStateProb<rounding_val) || (ObsStateProbPREV<rounding_val))
+    {
+      printf("Mutation (emission) rate is too low; will likely cause rounding errors. Exiting...\n");
+      exit(1);
+    }
+        */
         BetavecCURRENT[i] = log(exp(Betasum + large_num) + (1 - TransProb[locus]) * ObsStateProbPREV * exp(BetavecPREV[i] + large_num)) - large_num;
         if (locus > 0) Betasumnew = Betasumnew + TransProb[(locus - 1)] * copy_prob[i] * ObsStateProb * exp(BetavecCURRENT[i] + large_num);
         if (locus == 0) copy_prob_newSTART[i] = exp(Alphamat[i][0] + BetavecCURRENT[i] - Alphasum);

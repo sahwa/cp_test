@@ -12,11 +12,11 @@ int loglik(int nind_tot, int nhaps_startpop, int * p_nloci, int p_nhaps, double 
 
   FILE * fd;
   struct data_t * Data;
-  
+
   int i, j, m, n, r, h;
   int nhaps, num_regions_tot;
   int included_count, included_count_bigloop;
-  
+
   double sum_total_diff;
   double * total_back_prob = malloc(ndonorpops * sizeof(double));
   double * total_back_probSTART = malloc(ndonorpops * sizeof(double));
@@ -26,27 +26,27 @@ int loglik(int nind_tot, int nhaps_startpop, int * p_nloci, int p_nhaps, double 
   double * total_region_counts = malloc(ndonorpops * sizeof(double));
   double * total_squared_region_counts = malloc(ndonorpops * sizeof(double));
   double * snp_info_measure_final = malloc(ndonorpops * sizeof(double));
-  double N_e_new; 
+  double N_e_new;
   double N_e = 0;
-  
+
   double total_prob, total_probSTART;
   double ** copy_prob_pop = malloc(2 * sizeof(double * ));
-  
+
   int * newhap = malloc(( * p_nloci) * sizeof(int));
   int drift_malloc_size, drift_malloc_size2, drift_malloc_size3;
-  
+
   drift_malloc_size = num_rec_drift;
   drift_malloc_size2 = num_rec_ind;
   drift_malloc_size3 = * p_nloci;
-  
+
   if (drift_malloc_size == 0) {
     drift_malloc_size = 1;
     drift_malloc_size2 = 1;
     drift_malloc_size3 = 1;
   }
-  
+
   double * correlated_drift_vec = malloc(drift_malloc_size * sizeof(double));
-  
+
   nhaps_condpop = p_nhaps - nhaps_startpop;
   nind_condpop = nhaps_condpop / (2 - haploid_ind);
   double ** correlated_drift_calc = malloc(drift_malloc_size2 * sizeof(double * ));
